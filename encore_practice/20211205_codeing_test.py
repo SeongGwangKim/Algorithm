@@ -52,6 +52,13 @@ for i in range(0, temp):
 print(listTemp)
 #print(''.join(str(e) for e in listTemp))
 '''
-print(int('test'))
+t = 20
+e = 05 = 5
+s = 19
+t = 20
+test -> 20051920
 
-#print(Solution.solution(code, message))
+
+list(code)
+
+print(Solution.solution(code, message))
