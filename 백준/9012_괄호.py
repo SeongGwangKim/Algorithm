@@ -13,19 +13,19 @@
 
 T = int(input())
 for i in range(T):
-    st = []
+    stak = []
     VPS = True
     for ch in input():
         if ch == '(':
-            st.append(ch)
+            stak.append(ch)
         else:
-            if st:
-                st.pop()
+            if stak: # == if len(stack) > 0:
+                stak.pop()
             else:
                 VPS = False
                 break
 
-    if st:
+    if stak:
         VPS = False
     print('YES' if VPS else 'NO')
 
