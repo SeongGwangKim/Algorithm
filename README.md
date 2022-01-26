@@ -2,12 +2,6 @@
 
 # 1. 알고리즘 푸는데 필요한 개념
 
-<details><summary>CLICK ME</summary>
-```
-pythonprint("hello world!")
-```
-</details>
-
 ## * 1. 빠른 입력
  <details><summary>CLICK ME</summary>
  
