@@ -104,7 +104,6 @@ for i in combinations(v, 2): # v에서 4개를 뽑아서 나열
 <details><summary>CLICK ME</summary>
  
 ```python
-from collections import deque
 s = []
 s.append('값1') # queue에 값을 추가 ['값1']
 s.append('값2') # ['값1', '값2']
