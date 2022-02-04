@@ -1,4 +1,4 @@
-# 알고리즘 - 파이썬(Python) rev02
+# 알고리즘 - 파이썬(Python) rev03
 
 # 1. 알고리즘 푸는데 필요한 개념
 
@@ -157,6 +157,64 @@ while pq:
 ## * 8) 탐욕법 : 매 순간마다 최선의 경우만 골라서 가는 방법 따라서 어떤 경우가 최선인지 찾아야 한다.<br>
 #### - 조건의 각각이 연관관계를 가지고 있을 때 사용할 수 있다. eg) 배수
 #### - eg) 가장 큰 값부터 아래로 차근차근 채워나갈 수 있을 때 사용
+
+<br><br>
+
+## * 9) 재귀함수 : 점화식을 코드로 변형할 수 있지만 제한 조건을 반드시 주어야 한다.<br>
+ 
+<details><summary>CLICK ME</summary>
+ 
+```python
+ # 재귀함수 예제
+ def recursive_function(i):
+     # 100을 호출했을 때 종료
+     if i == 100:
+         return
+     print(i, '번째 재귀함수에서', i+1, '번째 재귀함수를 호출합니다.')
+     recursive_function(i+1)
+     print(i, '번째 재귀함수를 종료합니다.')
+ 
+ recursive_function(1)
+ 
+ ```
+</details> 
+
+<details><summary>CLICK ME</summary>
+ 
+```python
+ # eg) 최대공약수 구하는 방법 - 유클리드 호제법
+ def gcd(a, b):
+    if a % b == 0:
+        return b
+    else:
+        return gcd(b, a % b)
+ 
+ print(gcd(192, 162))
+```
+</details> 
+
+<br><br>
+
+## * 10) DFS(Depth first search) 깊이 우선 탐색<br>
+#### - 앞으로 찾아 가야할 노드와 이미 방문한 노드를 기준으로 데이터를 탐색
+#### - 스택(LIFO)으로 구현할 수 있다.
+ 
+<details><summary>CLICK ME</summary>
+ 
+```python
+import heapq as hq
+pq = []
+hq.heappush(pq, 6)
+hq.heappush(pq, 12)
+hq.heappush(pq, 0)
+hq.heappush(pq, -5)
+hq.heappush(pq, 8) # pq = [-5, 0, 6, 8, 12]
+
+while pq:
+    print(pq[0])
+    hq.heappop(pq) # -5제거 -> 0제거 -> 6제거 -> 8제거 -> 12제거
+```
+</details> 
 
 
 <hr><br>
