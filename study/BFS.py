@@ -1,4 +1,4 @@
-# DFS 메소드 정의
+# BFS 메소드 정의
 from collections import deque
 def bfs(graph, start, visited):
     # 큐(Queue)를 구현하기 위해 deque 라이브러리 사용
