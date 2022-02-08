@@ -1,4 +1,4 @@
-# 알고리즘 - 파이썬(Python) rev03
+# 알고리즘 - 파이썬(Python) rev04
 
 # 1. 알고리즘 푸는데 필요한 개념
 
@@ -202,20 +202,98 @@ while pq:
 <details><summary>CLICK ME</summary>
  
 ```python
-import heapq as hq
-pq = []
-hq.heappush(pq, 6)
-hq.heappush(pq, 12)
-hq.heappush(pq, 0)
-hq.heappush(pq, -5)
-hq.heappush(pq, 8) # pq = [-5, 0, 6, 8, 12]
+ # DFS 메소드 정의
+# v는 시작 노드, visited는 각 노드가 방문된 정보를 표현하는 리스트
+def dfs(graph, v, visited):
+    # 현재 노드를 방문 처리
+    visited[v] = True
+    print(v, end=' ')
 
-while pq:
-    print(pq[0])
-    hq.heappop(pq) # -5제거 -> 0제거 -> 6제거 -> 8제거 -> 12제거
+    # 현재 노드와 연결된 다른 노드를 재귀적으로 방문
+    for i in graph[v]:
+        if not visited[i]:
+            dfs(graph, i, visited)
+
+# 각 노드가 연결된 정보를 2차원 리스트로 표현
+graph = [ [], [2, 3, 8], [1, 7], [1, 4, 5], [3, 5], [3, 4], [7], [2, 6, 8], [1, 7] ]
+
+# 각 노드가 방문된 정보를 1차원 리스트로 표현
+visited = [False] * 9
+
+dfs(graph, 1, visited)
 ```
 </details> 
 
+<br><br>
+
+## * 11) BFS(Breadth first search) 너비 우선 탐색<br>
+ 
+<details><summary>CLICK ME</summary>
+ 
+```python
+ # BFS 메소드 정의
+from collections import deque
+def bfs(graph, start, visited):
+    # 큐(Queue)를 구현하기 위해 deque 라이브러리 사용
+    queue = deque([start])
+
+    # 현재 노드를 방문 처리
+    visited[start] = True
+
+    # 큐가 존재하지 않을 때까지 반복
+    while queue:
+        # 큐에서 원소 하나를 뽑아 출력
+        v = queue.popleft()
+        print(v, end=' ')
+
+        # 아직 방문하지 않은 인접한 원소들을 큐에 삽입
+        for i in graph[v]:
+            if not visited[i]:
+                queue.append(i)
+                visited[i] = True
+
+# 각 노드가 연결된 정보를 2차원 리스트로 표현
+graph = [ [], [2, 3, 8], [1, 7], [1, 4, 5], [3, 5], [3, 4], [7], [2, 6, 8], [1, 7] ]
+
+# 각 노드가 방문된 정보를 1차원 리스트로 표현
+visited = [False] * 9
+
+bfs(graph, 1, visited)
+```
+</details> 
+
+<br><br>
+
+## * 12) 이진 탐색<br>
+#### - 순서가 정렬되어 있는 상태에서 절반씩 나눠 탐색하는 방법
+#### - 탐색을 여러번 하는 경우에 유리(NlogN)
+ 
+<details><summary>CLICK ME</summary>
+ 
+```python
+#이진 탐색
+from bisect import bisect_left, bisect_right
+
+v = (0, 1, 3, 3, 6, 6, 6, 7, 8, 8, 9)
+three = bisect_right(v, 3) - bisect_left(v, 3)
+four = bisect_right(v, 4) - bisect_left(v, 4)
+six = bisect_right(v, 6) - bisect_left(v, 6)
+
+print(f'number of 3 : {three}')
+print(f'number of 4 : {four}')
+print(f'number of 6 : {six}') 
+ 
+```
+</details> 
+
+<br><br>
+
+## * 12) 파라메트릭 서치<br>
+#### - 최적화 문제를 결정 문제로 바꿔서 이진탐색으로 푸는 방법
+#### - 가능한 해의 영역이 연속적이어야 한다.
+#### - 최적화 문제 : 문제 상황을 만족하는 변수의 최솟값, 최댃값을 구하는 문제
+#### - 결정 문제 : Yes/No(True/False) 문제
+ 
 
 <hr><br>
 
