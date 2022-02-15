@@ -1,4 +1,4 @@
-# 알고리즘 - 파이썬(Python) rev04
+# 알고리즘 - 파이썬(Python) rev05
 
 # 1. 알고리즘 푸는데 필요한 개념
 
@@ -288,12 +288,85 @@ print(f'number of 6 : {six}')
 
 <br><br>
 
-## * 12) 파라메트릭 서치<br>
+## * 13) 파라메트릭 서치<br>
 #### - 최적화 문제를 결정 문제로 바꿔서 이진탐색으로 푸는 방법
 #### - 가능한 해의 영역이 연속적이어야 한다.
 #### - 최적화 문제 : 문제 상황을 만족하는 변수의 최솟값, 최댃값을 구하는 문제
 #### - 결정 문제 : Yes/No(True/False) 문제
  
+<br><br>
+
+## * 14) 동적할당(Dynamic Programming)<br>
+#### - 1. Top-down 방식 : 큰 문제를 우선으로 아래로 내려가며 계산하는 방식
+##### - 메모이제이션(Memoization)
+##### - 직관적이라 코드 가독성이 좋다.
+##### - 재귀함수 호출을 많이 해서 느릴 수 있다.
+##### - 초깃값 설정을 해줘야 한다.
+
+<details><summary>CLICK ME</summary>
+ 
+```python
+import sys
+# 반복 횟수 제어
+sys.setrecursionlimit(10**7)
+
+# 제한 횟수 설정
+MOD = 10007
+# N과 K로 각각 숫자를 받아 저장한다.
+N, K = map(int, input().split())
+
+# 케시 설정 : 범위가 0 ~ 1000이므로 값 저장할 메모리 설정.
+cache = [[0] * 1001 for _ in range(1001)]
+
+
+def bino(n, k):
+    # cache[n][k]가 이미 존재하면 cache[n][k]를 리턴값으로 받는다.
+    if cache[n][k]:
+        return cache[n][k]
+
+    # k가 0이거나 k가 n이랑 같을 경우에 cache에 1을 넣는다.
+    if k == 0 or k == n:
+        cache[n][k] = 1
+    # cache[n][k] = cache[n-1][k-1] + cache[n-1][k] 점화식 활용.
+    # 10007을 넘으면 나머지를 반환하도록 설정.
+    else:
+        cache[n][k] = bino(n-1, k-1) + bino(n-1, k)
+        cache[n][k] = cache[n][k] % MOD
+    return cache[n][k]
+
+
+print(bino(N, K)) 
+```
+</details> 
+
+<br>
+
+#### - 2. bottom-up 방식 : 작은 문제들로부터 올라가면서 계산하는 방식
+##### - 타뷸레이션(Tabulation)
+##### - 시간과 메모리를 좀더 아낄 수 있다.
+##### - DP 테이블을 채워 나가는 순서를 알아야 한다.
+##### - 초깃값 설정을 해줘야 한다.
+ 
+<details><summary>CLICK ME</summary>
+ 
+```python
+MOD = 10007
+N, K = map(int, input().split())
+
+cache = [[0] * 1001 for _ in range(1001)]
+
+for i in range(1001):
+    cache[i][0] = cache[i][i] = 1
+    for j in range(1, i):
+        cache[i][j] = cache[i-1][j-1] + cache[i-1][j]
+        cache[i][j] %= MOD
+
+print(cache[N][K])
+```
+</details> 
+
+<br><br>
+
 
 <hr><br>
 
@@ -301,4 +374,4 @@ print(f'number of 6 : {six}')
   * 1) if문을 사용하고 예외가 발생할 경우에 break를 반드시 사용한다.
   * 2) 값을 갱신해서 사용하는 경우에 정답과 값 비교 시 갱신 값이 들어가는지 확인한다.
   * 3) 테스트할 때 극단적인 값도 테스트 해본다.(최소값, 최대값 등등...)
-  * 
+  * 4) 논리적으로 접근하여 수학적으로 즉, 함수 형식으로 풀 수 있는지 확인해본다.
