@@ -27,8 +27,9 @@ dx = (1, 0, -1, 0)
 N, M = map(int, input().split())
 board = [input() for _ in range(N)]
 
+
 # 들어가는 리스트 확인
-# print(board)
+print(board)
 
 
 # 유효한 좌표인지 확인하는 함수
