@@ -54,6 +54,7 @@ heights = [int(input()) for _ in range(9)]
 heights.sort()
 tot = sum(heights)
 
+
 def func():
     for i in range(8):
         for j in range(i+1, 9):
