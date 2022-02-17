@@ -26,12 +26,14 @@ for _ in range(N):
 
 # 책 제목이 있으면 default count = 1, 책 제목이 중복되면 그 수만큼 count + 1
 for i in sell_list:
+    print('i의 정체는 ', i)
     try: count[i] = count[i] + 1
     except: count[i] = 1
+    print(count)
 
 # dict.items를 활용하여 key값과 value값을 오름차순 정렬
 count = dict(sorted(count.items()))
-# print(count)
+print(count)
 # 정답
 print(max(count, key=count.get))
 
