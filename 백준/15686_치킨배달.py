@@ -33,7 +33,7 @@
 출력
 첫째 줄에 폐업시키지 않을 치킨집을 최대 M개를 골랐을 때, 도시의 치킨 거리의 최솟값을 출력한다.
 '''
-
+# 내가 푼 풀이
 from itertools import combinations
 # N X M 행렬의 값을 받아 리스트에 넣는다.
 N, M = map(int, input().split())
@@ -74,6 +74,7 @@ else:
 
 
 '''
+# 해설
 from itertools import combinations
 # N X M 행렬의 값을 받아 리스트에 넣는다.
 N, M = map(int, input().split())
