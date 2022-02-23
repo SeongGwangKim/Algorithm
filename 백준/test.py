@@ -1,25 +1,35 @@
-# BFS
-from collections import deque
-dy = (0, 1, 0, -1)
-dx = (1, 0, -1, 0)
+from itertools import combinations
+# N X M 행렬의 값을 받아 리스트에 넣는다.
+N, M = map(int, input().split())
+houses = []
+chickens = []
 
-chk = [[False] * 100 for _ in range(100)]
-N = int(input())
 
-def is_valid_coord(y, x):
-    return 0 <= y < N and 0 <= x < N
+def get_dist(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-def bfs(start_y, start_x):
-    q = deque()
-    q.append((start_y, start_x))
-    while len(q) > 0:
-        y, x = q.popleft()
-        chk[y][x] = True
-        for k in range(4):
-            ny = y + dy[k]
-            nx = x + dx[k]
+for i in range(N):
+    # enumerate는 index와 value를 한 번에 가져올 수 있다.
+    for j, v in enumerate(map(int, input().split())):
+        if v == 1:
+            houses.append((i, j))
+        elif v == 2:
+            chickens.append((i, j))
 
-            if is_valid_coord(ny, nx) and not chk[ny][nx]:
-                q.append((ny, nx))
+ans = (N - 1) * 2 * len(houses)
 
-# 백트래킹 : 가지치기를 통해 탐색 경우의 수를 줄인다, 가망이 없으면 가지 않는다.
+for combi in combinations(chickens, M):
+    tot = 0 # 도시의 치킨 거리
+    for house in houses:
+        temp_list = []
+        print('----------------------')
+        # tot = tot + min(get_dist(house, chicken) for chicken in combi)
+        for chicken in combi:
+            temp = get_dist(house, chicken)
+            temp_list.append(temp)
+        print(temp_list)
+        tot = tot + min(temp_list)
+
+    ans = min(ans, tot)
+
+print(ans)
