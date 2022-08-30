@@ -64,3 +64,22 @@ x = 15
 if 0 < x < 20:
     print("x는 0초과 20미만의 수")
 
+# continue 활용
+result = 0
+
+for i in range(1, 10):
+    if i % 2 == 0:
+        continue
+    print(i)
+    result += i
+
+print(result)
+
+scores = [90, 85, 77, 65, 97]
+cheating_students_list = {2, 4}
+
+for i in range(5):
+    if i+1 in cheating_students_list:
+        continue
+    if scores[i] >= 80:
+        print(f"{i+1}번 학생은 합격입니다.")
